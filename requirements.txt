@@ -1,6 +1,6 @@
 # Lightweight torch for Railway (CPU only)
-torch==1.13.1+cpu
-torchvision==0.14.1+cpu
+torch==2.0.1+cpu
+torchvision==0.15.2+cpu
 -f https://download.pytorch.org/whl/cpu
 
 # YOLOv5 requirements (minimal)
