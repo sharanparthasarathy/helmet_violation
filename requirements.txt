@@ -1,9 +1,7 @@
-# Lightweight torch for Railway (CPU only)
-torch==2.0.1+cpu
-torchvision==0.15.2+cpu
+torch==2.0.1
+torchvision==0.15.2
 -f https://download.pytorch.org/whl/cpu
 
-# YOLOv5 requirements (minimal)
 numpy==1.23.5
 opencv-python-headless==4.7.0.72
 pillow==10.2.0
@@ -20,7 +18,5 @@ packaging==24.0
 setuptools==70.0.0
 thop==0.1.1.post2209072238
 
-# Flask app
 Flask==3.0.0
 werkzeug==3.0.1
-gunicorn==21.2.0
