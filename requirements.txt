@@ -20,10 +20,7 @@ packaging==24.0
 setuptools==70.0.0
 thop==0.1.1.post2209072238
 
-# YOLOv5 runtime only, NOT full ultralytics
-# Avoid heavy YOLOv8 installation
-# ultralytics removed on purpose
-
 # Flask app
 Flask==3.0.0
 werkzeug==3.0.1
+gunicorn==21.2.0

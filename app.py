@@ -14,7 +14,9 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 os.makedirs(app.config['PREDICTED_FOLDER'], exist_ok=True)
 
 # Load YOLOv5 model (use your trained best.pt)
-model = torch.hub.load('yolov5', 'custom', path='best.pt', source='local')
+#model = torch.hub.load('yolov5', 'custom', path='best.pt', source='local')
+model = torch.hub.load('./yolov5', 'custom', path='best.pt', source='local', force_reload=True)
+
 
 @app.route('/')
 def index():
@@ -54,4 +56,6 @@ def predict():
         )
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=7799)
+    import os
+    port = int(os.environ.get("PORT", 8000))
+    app.run(host='0.0.0.0', port=port)
