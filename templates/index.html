@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Helmet Violation Detection</title>
+</head>
+<body style="text-align:center; font-family:sans-serif;">
+  <h2>Upload an image for helmet detection</h2>
+  <form action="/predict" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" required>
+    <br><br>
+    <button type="submit">Upload & Predict</button>
+  </form>
+</body>
+</html>
