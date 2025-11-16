@@ -1,23 +1,38 @@
+# ---- Lightweight & Fast Install Version ----
+
+# CPU-only PyTorch (smallest build)
+--extra-index-url https://download.pytorch.org/whl/cpu
 torch==2.0.1
 torchvision==0.15.2
--f https://download.pytorch.org/whl/cpu
 
-numpy==1.23.5
-opencv-python-headless==4.7.0.72
-pillow==10.2.0
-matplotlib==3.8.0
-PyYAML==6.0.1
-requests==2.32.2
-tqdm==4.66.3
-psutil==5.9.0
-gitpython==3.1.30
+# Core scientific packages (compatible lightweight versions)
+numpy==1.24.4
 pandas==1.5.3
 scipy==1.10.1
+
+# OpenCV (headless to reduce size)
+opencv-python-headless==4.7.0.72
+
+# Plotting & utilities
+matplotlib==3.8.0
 seaborn==0.12.2
+pillow==10.2.0
+tqdm==4.66.3
+PyYAML==6.0.1
+requests==2.32.2
+psutil==5.9.0
 packaging==24.0
-setuptools==70.0.0
+
+# Git operations
+gitpython==3.1.30
+
+# Model utility
 thop==0.1.1.post2209072238
 
+# Web backend
 Flask==3.0.0
 werkzeug==3.0.1
 gunicorn==21.2.0
+
+# Prevent version issues
+setuptools<=70.0.0
