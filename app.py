@@ -17,12 +17,20 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 os.makedirs(app.config['PREDICTED_FOLDER'], exist_ok=True)
 
 # Load YOLOv5 model
-model = torch.hub.load(
+"""model = torch.hub.load(
     'ultralytics/yolov5',
     'custom',
     path=os.path.join(BASE_DIR, 'best.pt'),
     source='github'
-)
+)"""
+# Make YOLOv5 importable
+sys.path.append(os.path.join(BASE_DIR, "yolov5"))
+from models.common import DetectMultiBackend
+
+# Load YOLOv5 model from best.pt
+model = DetectMultiBackend(
+    weights=os.path.join(BASE_DIR, "best.pt"),
+    device='cpu'
 
 @app.route('/')
 def index():
