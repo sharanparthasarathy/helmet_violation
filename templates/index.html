@@ -1,14 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Helmet Violation Detection</title>
+    <title>YOLO Prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding-top: 50px; }
+        .upload-box {
+            border: 2px dashed #888;
+            padding: 30px;
+            width: 400px;
+            margin: auto;
+            border-radius: 10px;
+        }
+        input[type="file"] {
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            background: #0284c7;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover { background: #0369a1; }
+    </style>
 </head>
-<body style="text-align:center; font-family:sans-serif;">
-  <h2>Upload an image for helmet detection</h2>
-  <form action="/predict" method="post" enctype="multipart/form-data">
-    <input type="file" name="file" required>
-    <br><br>
-    <button type="submit">Upload & Predict</button>
-  </form>
+<body>
+    <h1>YOLO Object Detection</h1>
+
+    <div class="upload-box">
+        <form action="/predict" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" required><br>
+            <button type="submit">Predict</button>
+        </form>
+    </div>
 </body>
 </html>

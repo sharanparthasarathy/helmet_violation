@@ -4,6 +4,7 @@ import sys
 from werkzeug.utils import secure_filename
 from PIL import Image
 import torch
+import numpy as np
 
 app = Flask(__name__)
 
@@ -20,6 +21,7 @@ sys.path.append(os.path.join(BASE_DIR, "yolov5"))
 from models.common import DetectMultiBackend
 from utils.general import non_max_suppression
 from utils.augmentations import letterbox
+from utils.plots import Annotator, colors
 
 # Load model
 MODEL_PATH = os.path.join(BASE_DIR, "best.pt")
@@ -45,16 +47,25 @@ def predict():
     file.save(upload_path)
 
     # --- Inference ---
-    img = Image.open(upload_path).convert('RGB')
-    img = letterbox(img, 640, stride=stride, auto=True)[0]
-    img = img.transpose((2, 0, 1))
+    img0 = Image.open(upload_path).convert('RGB')
+    img = letterbox(np.array(img0), 640, stride=stride, auto=True)[0]
+
+    img = img.transpose((2, 0, 1))  # HWC → CHW
     img = torch.from_numpy(img).float().unsqueeze(0) / 255.0
 
     pred = model(img)
     pred = non_max_suppression(pred, 0.25, 0.45)[0]
 
-    # Draw boxes
-    rendered = model.model.draw(img[0], pred, names)
+    # --- Draw boxes ---
+    im = img[0].mul(255).byte().cpu().numpy().transpose(1, 2, 0)
+    annotator = Annotator(im, line_width=2)
+
+    if pred is not None:
+        for *xyxy, conf, cls in pred:
+            label = f"{names[int(cls)]} {conf:.2f}"
+            annotator.box_label(xyxy, label, color=colors(int(cls)))
+
+    rendered = annotator.result()
     Image.fromarray(rendered).save(pred_path)
 
     return render_template(

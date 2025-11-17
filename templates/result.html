@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Prediction Result</title>
+    <title>YOLO Result</title>
+    <style>
+        body { font-family: Arial; text-align: center; padding: 30px; }
+        img { max-width: 450px; margin: 20px; border-radius: 10px; }
+        a {
+            text-decoration: none;
+            padding: 10px 20px;
+            background: #0284c7;
+            color: white;
+            border-radius: 8px;
+        }
+        a:hover { background: #0369a1; }
+    </style>
 </head>
-<body style="text-align:center; font-family:sans-serif;">
-  <h2>Helmet Detection Result</h2>
-  <p><b>Original Image:</b></p>
-  <img src="{{ url_for('static', filename= input_image) }}" width="400"><br><br>
+<body>
 
-  <p><b>Predicted Image:</b></p>
-  <img src="{{ url_for('static', filename= output_image) }}" width="400"><br><br>
+    <h1>Prediction Result</h1>
 
-  <a href="/">Try another image</a>
+    <h3>Uploaded Image</h3>
+    <img src="{{ url_for('static', filename=input_image) }}">
+
+    <h3>Predicted Image</h3>
+    <img src="{{ url_for('static', filename=output_image) }}">
+
+    <br><br>
+    <a href="/">Try Another Image</a>
+
 </body>
 </html>
